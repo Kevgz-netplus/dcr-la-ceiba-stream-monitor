@@ -1,0 +1,9 @@
+{
+  "name": "dcr-la-ceiba-stream-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "google-auth-library": "^9.15.1"
+  }
+}
