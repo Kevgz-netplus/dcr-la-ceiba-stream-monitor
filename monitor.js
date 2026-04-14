@@ -45,7 +45,6 @@ async function checkStream() {
 
     clearTimeout(timeout);
 
-    // Ajusta esto si tu proveedor usa otro código cuando sí hay transmisión.
     const isOnline = response.ok;
     return {
       status: isOnline ? "online" : "offline",
