@@ -11,6 +11,7 @@ if (!FCM_PROJECT_ID) throw new Error("Missing FCM_PROJECT_ID");
 if (!FIREBASE_SERVICE_ACCOUNT) throw new Error("Missing FIREBASE_SERVICE_ACCOUNT");
 
 const STATE_FILE = "./state.json";
+const STATUS_FILE = "./stream-status.json";
 
 async function readState() {
   try {
@@ -25,6 +26,24 @@ async function writeState(nextStatus) {
   await fs.writeFile(
     STATE_FILE,
     JSON.stringify({ lastStatus: nextStatus }, null, 2) + "\n",
+    "utf8"
+  );
+}
+
+async function writePublicStatus({ status, details }) {
+  const online = status === "online";
+
+  await fs.writeFile(
+    STATUS_FILE,
+    JSON.stringify(
+      {
+        online,
+        lastChecked: new Date().toISOString(),
+        message: online ? "Stream activo" : `Señal no disponible (${details})`
+      },
+      null,
+      2
+    ) + "\n",
     "utf8"
   );
 }
@@ -138,6 +157,8 @@ async function main() {
 
   console.log("Previous status:", previous.lastStatus);
   console.log("Current status:", current.status, "-", current.details);
+
+  await writePublicStatus(current);
 
   if (previous.lastStatus === current.status) {
     console.log("No status change. Nothing to notify.");
