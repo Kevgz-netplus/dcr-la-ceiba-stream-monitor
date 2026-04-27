@@ -1,5 +1,5 @@
 {
-  "online": true,
-  "lastChecked": "2026-04-27T19:50:16.553Z",
-  "message": "Stream activo"
+  "online": false,
+  "lastChecked": "2026-04-27T20:09:12.762Z",
+  "message": "Señal no disponible (TypeError: fetch failed)"
 }
