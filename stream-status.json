@@ -1,5 +1,5 @@
 {
-  "online": false,
-  "lastChecked": "2026-05-17T19:39:59.083Z",
-  "message": "Señal no disponible (HTTP 401)"
+  "online": true,
+  "lastChecked": "2026-05-17T20:33:57.401Z",
+  "message": "Stream activo"
 }
