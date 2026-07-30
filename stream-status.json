@@ -1,5 +1,5 @@
 {
   "online": false,
-  "lastChecked": "2026-07-30T11:19:46.793Z",
-  "message": "Señal no disponible (TypeError: fetch failed)"
+  "lastChecked": "2026-07-30T12:59:42.098Z",
+  "message": "Señal no disponible (HTTP 401)"
 }
