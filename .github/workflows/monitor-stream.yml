@@ -32,7 +32,13 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: node monitor.js
 
+      # Runs even when the monitor step failed. A failed FCM call still leaves a
+      # real observation on disk, and state.json now records separately what was
+      # seen and what was announced, so committing it keeps the files honest
+      # without losing the notification: the next run sees the two disagree and
+      # tries again.
       - name: Commit state files if changed
+        if: always()
         run: |
           if [ -n "$(git status --porcelain state.json stream-status.json)" ]; then
             git config user.name "github-actions[bot]"
